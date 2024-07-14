@@ -1,4 +1,4 @@
-# serv00-vless [注册serv00](https://www.serv00.com/)
+# serv00-ping [注册serv00](https://www.serv00.com/)
 ## 使用方法：
 
 1. 在WWW Websites处建一个nodejs
