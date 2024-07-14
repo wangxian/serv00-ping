@@ -1,5 +1,3 @@
-# >>>>>> [Python部署新方法,nodejs封杀](https://github.com/eooce/python-xray-argo)
-
 # serv00-vless [注册serv00](https://www.serv00.com/)
 ## 使用方法：
 
