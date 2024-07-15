@@ -9,7 +9,7 @@ const port = process.env.PORT || 51200;
 const wss = new WebSocket.Server({ port }, logcb('listen:', port));
 
 wss.on('connection', ws => {
-    console.log("on connection");
+    console.log("[%s] new connection", new Date().toLocaleString());
 
     ws.once('message', msg => {
         const [VERSION] = msg;
@@ -24,7 +24,7 @@ wss.on('connection', ws => {
             (ATYP === 2 ? new TextDecoder().decode(msg.slice(i + 1, i += 1 + msg.slice(i, i + 1).readUInt8())) : // domain
                 (ATYP === 3 ? msg.slice(i, i += 16).reduce((s, b, i, a) => (i % 2 ? s.concat(a.slice(i - 1, i + 1)) : s), []).map(b => b.readUInt16BE(0).toString(16)).join(':') : '')); // IPV6
 
-        logcb('conn:', host, targetPort);
+        console.log('[%s] conn:', new Date().toLocaleString(), host, targetPort);
 
         ws.send(new Uint8Array([VERSION, 0]));
 
