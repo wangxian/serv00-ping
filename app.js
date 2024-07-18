@@ -6,7 +6,7 @@ const errcb = (...args) => console.error.bind(this, ...args);
 const uuid = (process.env.UUID || 'ae30b9df-4a54-4f01-be56-dfa718f97786').replace(/-/g, '');
 const port = process.env.PORT || 51200;
 
-const wss = new WebSocket.Server({ port }, logcb('listen:', port));
+const wss = new WebSocket.Server({ port }, logcb('[startup] listen:', port, 'at', new Date().toLocaleString()));
 
 wss.on('connection', ws => {
     console.log("[%s] new connection", new Date().toLocaleString());
@@ -34,5 +34,5 @@ wss.on('connection', ws => {
             this.write(msg.slice(i));
             duplex.on('error', errcb('E1:')).pipe(this).on('error', errcb('E2:')).pipe(duplex);
         }).on('error', errcb('Conn-Err:', { host, port: targetPort }));
-    }).on('error', errcb('EE:'));
+    }).on('error', errcb('E3:'));
 });
